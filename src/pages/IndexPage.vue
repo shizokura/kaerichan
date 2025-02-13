@@ -4,10 +4,36 @@
     <div class="container text-center">
       <div class="heart"></div>
       <h1 class="text-h3 text-red">
-        Happy Valentine's Day, <span class="text-weight-bold">{{ name }}</span
-        >! <br />
-        <span class="text-h4">I love you! Lablab ko</span>
+        <TypewriterText
+          text="Happy Valentine's Day, "
+          :delay="100"
+          :startTyping="true"
+          @finished="startSecond = true"
+        />
+        <span class="text-weight-bold">
+          <TypewriterText
+            :text="name"
+            :delay="100"
+            :startTyping="startSecond"
+            @finished="startThird = true"
+          /> </span
+        ><br />
+        <span class="text-h4">
+          <TypewriterText
+            text="I love you! Lablab ko."
+            :delay="100"
+            :startTyping="startThird"
+            @finished="startFourth = true"
+          />
+        </span>
       </h1>
+      <span class="text-red" style="font-size: 1.5em">
+        <TypewriterText
+          text="Hehe pasensiya kung wala akong naready something for this day pero i want you to believe na importante ka sa akin and I want to spend the rest of my life with youuu. I love you so much! 😘"
+          :delay="50"
+          :startTyping="startFourth"
+        />
+      </span>
     </div>
   </q-page>
 </template>
@@ -15,13 +41,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import HeartBackground from 'components/HeartBackground.vue'
-const name = ref('Erikaaa')
+import TypewriterText from 'components/TypewriterText.vue'
+
+const name = ref('Erikaaa!')
+const startSecond = ref(false)
+const startThird = ref(false)
+const startFourth = ref(false)
 </script>
 
 <style scoped>
 .container {
   text-align: center;
-  padding: 0 50px;
+  padding: 50px;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .heart {
